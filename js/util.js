@@ -12,6 +12,16 @@ const getRandomFrom = (array) => {
   return array[randomIndex];
 };
 
-const doesNotExceed = (string, maxLength) => string.length <= maxLength;
+const doesExceed = (sequence, maxLength) => sequence.length > maxLength;
+const matchPattern = (value, pattern) => pattern.test(value);
+const hasDuplicates = (arr) => new Set(arr).size < arr.length;
+const isEscapeKey = (evt) => evt.code === 'Escape';
 
-export { getRandomNumber, getRandomFrom, doesNotExceed };
+export {
+  getRandomNumber,
+  getRandomFrom,
+  doesExceed,
+  matchPattern,
+  hasDuplicates,
+  isEscapeKey,
+};
