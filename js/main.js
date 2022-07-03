@@ -1,3 +1,3 @@
-import './fullscreen.js';
+import './pictures.js';
 import './upload.js';
 import './validation.js';
