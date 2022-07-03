@@ -1,6 +1,6 @@
 import { isEscapeKey } from './util.js';
 import { open, close } from './window.js';
-import { picturesArea, picturesData } from './pictures.js';
+import { picturesArea, picturesData } from './thumbnails.js';
 
 const fullscreenWindow = document.querySelector('.big-picture');
 const cancelButton = fullscreenWindow.querySelector('#picture-cancel');
