@@ -6,10 +6,11 @@ const pictureTemplate = document
   .content.querySelector('.picture');
 
 const fragment = document.createDocumentFragment();
-const pictures = getImages(25);
+const picturesData = getImages(25);
 
-pictures.forEach(({ url, likes: likesCount, comments }) => {
+picturesData.forEach(({ id, url, likes: likesCount, comments }) => {
   const picture = pictureTemplate.cloneNode(true);
+  picture.dataId = id;
   picture.querySelector('.picture__img').src = url;
   picture.querySelector('.picture__comments').textContent = comments.length;
   picture.querySelector('.picture__likes').textContent = likesCount;
@@ -17,3 +18,5 @@ pictures.forEach(({ url, likes: likesCount, comments }) => {
 });
 
 picturesArea.appendChild(fragment);
+
+export { picturesArea, picturesData };
