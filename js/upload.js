@@ -1,4 +1,5 @@
 import './scale.js';
+import './validation.js';
 
 import { imagePreview, slider } from './effects.js';
 import { isEscapeKey  } from './util.js';
