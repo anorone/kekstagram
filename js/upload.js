@@ -1,3 +1,5 @@
+import './scale.js';
+
 import { imagePreview, slider } from './effects.js';
 import { isEscapeKey  } from './util.js';
 import { open, close } from './window.js';
