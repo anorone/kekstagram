@@ -1234,6 +1234,30 @@ main {
 
 
 /**
+ * Предупреждение об отсутствии соединения с сервером
+ */
+
+.warning {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+  padding: 20px 45px;
+
+  font-family: "Open Sans", "Arial", sans-serif;
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  color: #ffffff;
+
+  background-color: #ff4e4e;
+
+  opacity: 1;
+  transition: opacity 2.5s;
+}
+
+
+/**
  * Экраны ошибки и успеха загрузки изображения
  */
 
