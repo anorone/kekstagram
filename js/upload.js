@@ -1,20 +1,18 @@
-import './scale.js';
-import './validation.js';
-
-import { imagePreview, slider } from './effects.js';
 import { isEscapeKey  } from './util.js';
 import { open, close } from './window.js';
 
 const uploadForm = document.querySelector('#upload-select-image');
 const uploadInput = uploadForm.querySelector('#upload-file');
 const uploadWindow = uploadForm.querySelector('.img-upload__overlay');
+const imagePreview = uploadWindow.querySelector('.img-upload__preview img');
+const effectLevelSlider = uploadWindow.querySelector('.effect-level__slider');
 const uploadInfo = uploadWindow.querySelector('.img-upload__text');
 const cancelButton = uploadWindow.querySelector('#upload-cancel');
 
 const unsetImagePreview = () => {
   imagePreview.className = '';
   imagePreview.style.filter = '';
-  slider.style.display = '';
+  effectLevelSlider.style.display = '';
 };
 
 const onUploadInfoKeydown = (evt) => {

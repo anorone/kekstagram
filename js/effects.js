@@ -48,5 +48,3 @@ slider.noUiSlider.on('update', ([value]) => {
     effectLevel.value = '';
   }
 });
-
-export { imagePreview, slider };
