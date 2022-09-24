@@ -1,9 +1,14 @@
 import { doesExceed, matchPattern, hasDuplicates } from './util.js';
 
+const uploadForm = document.querySelector('#upload-select-image');
+const fieldSet = uploadForm.querySelector('.img-upload__text');
+const hashtagsField = fieldSet.querySelector('.text__hashtags');
+const commentField = fieldSet.querySelector('.text__description');
+
+const COMMENT_MAX_LENGTH = commentField.maxLength;
 const HASHTAG_PATTERN = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 const HASHTAG_MAX_LENGTH = 20;
 const HASHTAGS_MAX_COUNT = 5;
-const COMMENT_MAX_LENGTH = 140;
 
 const Messages = {
   HASHTAG_HINTS: [
@@ -16,11 +21,6 @@ const Messages = {
     `Длина комментария не может быть больше ${COMMENT_MAX_LENGTH} символов.`,
   ],
 };
-
-const uploadForm = document.querySelector('#upload-select-image');
-const fieldSet = uploadForm.querySelector('.img-upload__text');
-const hashtagsField = fieldSet.querySelector('.text__hashtags');
-const commentField = fieldSet.querySelector('.text__description');
 
 hashtagsField.addEventListener('input', () => {
   const hashtags = hashtagsField.value
