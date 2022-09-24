@@ -9,10 +9,11 @@ const effectLevelSlider = uploadWindow.querySelector('.effect-level__slider');
 const uploadInfo = uploadWindow.querySelector('.img-upload__text');
 const cancelButton = uploadWindow.querySelector('#upload-cancel');
 
-const unsetImagePreview = () => {
-  imagePreview.className = '';
-  imagePreview.style.filter = '';
-  effectLevelSlider.style.display = '';
+const onKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    closeUploadWindow(); // eslint-disable-line no-use-before-define
+    uploadForm.reset();
+  }
 };
 
 const onUploadInfoKeydown = (evt) => {
@@ -21,18 +22,16 @@ const onUploadInfoKeydown = (evt) => {
   }
 };
 
-const onKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    /* eslint-disable no-use-before-define */
-    closeUploadWindow();
-    uploadForm.reset();
-  }
-};
-
 const insertImage = () => {
   const userImage = uploadInput.files[0];
   const url = URL.createObjectURL(userImage);
   imagePreview.src = url;
+};
+
+const unsetImagePreview = () => {
+  imagePreview.className = '';
+  imagePreview.style.filter = '';
+  effectLevelSlider.style.display = '';
 };
 
 const openUploadWindow = () => {
@@ -56,3 +55,5 @@ uploadInput.addEventListener('change', () => {
 cancelButton.addEventListener('click', () => {
   closeUploadWindow();
 });
+
+export { closeUploadWindow, uploadInput };
