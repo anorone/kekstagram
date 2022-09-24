@@ -1,11 +1,13 @@
-const getData = (url, onError, onSuccess) => fetch(url)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error('Failed to fetch');
-    }
+const process = (response, cb) => {
+  if (!response.ok) {
+    throw new Error('Failed to fetch');
+  }
 
-    return response.json();
-  })
+  return cb();
+};
+
+const getData = (url, onError, onSuccess) => fetch(url)
+  .then((response) => process(response, () => response.json()))
   .then((data) => {
     onSuccess(data);
     return data;
@@ -19,13 +21,7 @@ const postData = (data, url, onError, onSuccess) => {
   });
 
   return response
-    .then((result) => {
-      if (!result.ok) {
-        throw new Error('Failed to fetch');
-      }
-
-      return onSuccess(result);
-    })
+    .then((result) => process(result, onSuccess))
     .catch((err) => onError(err));
 };
 

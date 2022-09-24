@@ -8,17 +8,14 @@ import { postData } from './fetch.js';
 
 const uploadForm = document.querySelector('#upload-select-image');
 
-const onError = () => {
+const show = (message) => {
   closeUploadWindow();
   uploadForm.reset();
-  document.body.appendChild(errorMessage);
+  document.body.appendChild(message);
 };
 
-const onSuccess = () => {
-  closeUploadWindow();
-  uploadForm.reset();
-  document.body.appendChild(successMessage);
-};
+const onError = () => show(errorMessage);
+const onSuccess = () => show(successMessage);
 
 uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
