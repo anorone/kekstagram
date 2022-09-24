@@ -17,8 +17,10 @@ const Messages = {
   ],
 };
 
-const hashtagsField = document.querySelector('.text__hashtags');
-const commentField = document.querySelector('.text__description');
+const uploadForm = document.querySelector('#upload-select-image');
+const fieldSet = uploadForm.querySelector('.img-upload__text');
+const hashtagsField = fieldSet.querySelector('.text__hashtags');
+const commentField = fieldSet.querySelector('.text__description');
 
 hashtagsField.addEventListener('input', () => {
   const hashtags = hashtagsField.value
@@ -39,6 +41,7 @@ hashtagsField.addEventListener('input', () => {
     hashtagsField.setCustomValidity(Messages.HASHTAG_HINTS[3]);
   } else {
     hashtagsField.setCustomValidity('');
+    hashtagsField.style.outline = '';
   }
 
   hashtagsField.reportValidity();
@@ -51,7 +54,20 @@ commentField.addEventListener('input', () => {
     commentField.setCustomValidity(Messages.COMMENT_HINTS[0]);
   } else {
     commentField.setCustomValidity('');
+    hashtagsField.style.outline = '';
   }
 
   commentField.reportValidity();
+});
+
+uploadForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+  const isValid = uploadForm.reportValidity();
+
+  if (!isValid) {
+    fieldSet.querySelectorAll(':invalid').forEach((input) => {
+      input.style.outline = '5px solid #ff4e4e';
+    });
+  }
 });
