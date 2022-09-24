@@ -23,11 +23,9 @@ const onUploadInfoKeydown = (evt) => {
 
 const onKeydown = (evt) => {
   if (isEscapeKey(evt)) {
-    close(uploadWindow);
-    document.removeEventListener('keydown', onKeydown);
-    uploadInfo.removeEventListener('keydown', onUploadInfoKeydown);
+    /* eslint-disable no-use-before-define */
+    closeUploadWindow();
     uploadForm.reset();
-    unsetImagePreview();
   }
 };
 
@@ -37,16 +35,24 @@ const insertImage = () => {
   imagePreview.src = url;
 };
 
-uploadInput.addEventListener('change', () => {
-  insertImage();
+const openUploadWindow = () => {
+  open(uploadWindow);
   document.addEventListener('keydown', onKeydown);
   uploadInfo.addEventListener('keydown', onUploadInfoKeydown);
-  open(uploadWindow);
-});
+  insertImage();
+};
 
-cancelButton.addEventListener('click', () => {
+const closeUploadWindow = () => {
   close(uploadWindow);
   document.removeEventListener('keydown', onKeydown);
   uploadInfo.removeEventListener('keydown', onUploadInfoKeydown);
   unsetImagePreview();
+};
+
+uploadInput.addEventListener('change', () => {
+  openUploadWindow();
+});
+
+cancelButton.addEventListener('click', () => {
+  closeUploadWindow();
 });
