@@ -1,4 +1,5 @@
 import { getData } from './fetch.js';
+import { warningMessage } from './messages.js';
 
 const picturesArea = document.querySelector('.pictures');
 
@@ -6,14 +7,10 @@ const pictureTemplate = document
   .querySelector('#picture')
   .content.querySelector('.picture');
 
-const warningTemplate = document
-  .querySelector('#warning')
-  .content.querySelector('.warning');
-
 const onError = () => {
-  document.body.appendChild(warningTemplate);
+  document.body.appendChild(warningMessage);
   setTimeout(() => {
-    warningTemplate.style.opacity = 0;
+    warningMessage.style.opacity = 0;
   }, 5000);
 };
 
