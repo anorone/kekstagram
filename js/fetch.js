@@ -12,6 +12,21 @@ const getData = (url, onError, onSuccess) => fetch(url)
   })
   .catch((err) => onError(err));
 
-const postData = () => {};
+const postData = (data, url, onError, onSuccess) => {
+  const response = fetch(url, {
+    method: 'POST',
+    body: data,
+  });
+
+  return response
+    .then((result) => {
+      if (!result.ok) {
+        throw new Error('Failed to fetch');
+      }
+
+      return onSuccess(result);
+    })
+    .catch((err) => onError(err));
+};
 
 export { getData, postData };
