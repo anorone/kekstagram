@@ -1,5 +1,5 @@
 import { getData } from './fetch.js';
-import { warningMessage } from './messages.js';
+import { warningMessage, loadingMessage } from './messages.js';
 
 const picturesArea = document.querySelector('.pictures');
 
@@ -8,6 +8,7 @@ const pictureTemplate = document
   .content.querySelector('.picture');
 
 const onError = () => {
+  loadingMessage.remove();
   document.body.appendChild(warningMessage);
   setTimeout(() => {
     warningMessage.style.opacity = 0;
@@ -27,7 +28,10 @@ const onSuccess = (data) => {
   });
 
   picturesArea.appendChild(fragment);
+  loadingMessage.remove();
 };
+
+document.body.appendChild(loadingMessage);
 
 const picturesData = await getData(
   'https://24.javascript.pages.academy/kekstagram/data',

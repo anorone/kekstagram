@@ -3,6 +3,10 @@ import { uploadInput } from './upload.js';
 
 const body = document.body;
 
+const loadingMessage = document
+  .querySelector('#messages')
+  .content.querySelector('.img-upload__message--loading');
+
 const warningMessage = document
   .querySelector('#warning')
   .content.querySelector('.warning');
@@ -47,4 +51,9 @@ errorButton.addEventListener('click', () => {
   uploadInput.click();
 });
 
-export { errorMessage, successMessage, warningMessage };
+export {
+  errorMessage,
+  successMessage,
+  warningMessage,
+  loadingMessage,
+};
