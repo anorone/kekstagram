@@ -1,5 +1,6 @@
 import { getData } from './fetch.js';
 import { warningMessage, loadingMessage } from './messages.js';
+import addFilters from './filter.js';
 
 const picturesArea = document.querySelector('.pictures');
 
@@ -15,7 +16,7 @@ const onError = () => {
   }, 5000);
 };
 
-const onSuccess = (data) => {
+const renderPictures = (data) => {
   const fragment = document.createDocumentFragment();
 
   data.forEach(({ id, url, likes: likesCount, comments }) => {
@@ -27,7 +28,13 @@ const onSuccess = (data) => {
     fragment.appendChild(picture);
   });
 
+  picturesArea.innerHTML = '';
   picturesArea.appendChild(fragment);
+};
+
+const onSuccess = (data) => {
+  renderPictures(data);
+  addFilters(data, renderPictures);
   loadingMessage.remove();
 };
 
